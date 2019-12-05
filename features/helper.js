@@ -3,7 +3,7 @@ const cucumberJson = require('wdio-cucumberjs-json-reporter').default;
 
 function logGenerator(logText) {
     cucumberJson.attach('Automação: ' + logText);
-    console.log('Automação: ' + logText)
+    //console.log('Automação: ' + logText)
 }
 
 // function addScreenshot(){

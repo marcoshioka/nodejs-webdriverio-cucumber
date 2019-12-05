@@ -1,3 +1,4 @@
+//Config para habilitar o autocomplete dos frameworks usados com o VS code
 {
     "include": [
         "**/*.js",

@@ -12,7 +12,7 @@ exports.config = {
     runner: 'local',
     //
     // Override default path ('/wd/hub') for chromedriver service.
-    path: '/',
+    path: '/wd/hub',
     //
     // ==================
     // Specify Test Files
@@ -59,14 +59,14 @@ exports.config = {
         maxInstances: 5,
         //
 
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-            args: ['--disable-gpu', '--start-maximized'],
-            //mobileEmulation: { deviceName: 'iPhone 6' },
-            // to run chrome headless the following flags are required
-            // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
-            // args: ['--headless', '--disable-gpu'],
-        }
+        browserName: 'firefox',
+        //'goog:chromeOptions': {
+        //args: ['--disable-gpu', '--start-maximized'],
+        //mobileEmulation: { deviceName: 'iPhone 6' },
+        // to run chrome headless the following flags are required
+        // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+        // args: ['--headless', '--disable-gpu'],
+        //}
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -120,8 +120,23 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
-
+    services: ['selenium-standalone'],
+    seleniumLogs: 'logs',
+    seleniumInstallArgs: {
+        drivers: {
+            //chrome: { version: '77.0.3865.40' },
+            firefox: { version: '0.25.0' },
+        }
+    },
+    // firefoxProfile: {
+    //     extensions: [
+    //       //'/path/to/extensionA.xpi', // path to .xpi file
+    //       //'/path/to/extensionB' // or path to unpacked Firefox extension
+    //     ],
+    //     //'xpinstall.signatures.required': false,
+    //     'browser.startup.homepage': 'https://webdriver.io',
+    //     legacy: true // used for firefox <= 55
+    //   },
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
@@ -378,24 +393,23 @@ exports.config = {
 
     },
 
-    afterScenario: function (scenario, result, sourceLocation,uri) {
-        const cucumberJson = require('wdio-cucumberjs-json-reporter').default;
+    afterScenario: function (scenario, result, sourceLocation, uri) {
+
         console.log(uri.status)
         if (uri.status === 'failed') {
-            cucumberJson.attach(browser.takeScreenshot(), 'image/png');
-        //console.log(result)
-    //     if (scenario.result.status === Status.FAILED) {
-    //         console.log('Cenário Falhou')}
-    
-     }
+            //console.log(result)
+            //     if (scenario.result.status === Status.FAILED) {
+            //         console.log('Cenário Falhou')}
+
+        }
     }
     //  afterStep: function ({error}) {
-    
+
     //     console.log({error})
     //     //console.log(result)
     // //     if (scenario.result.status === Status.FAILED) {
     // //         console.log('Cenário Falhou')}
-    
+
     //  },
 
 

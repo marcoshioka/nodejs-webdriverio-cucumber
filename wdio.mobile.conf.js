@@ -62,7 +62,7 @@ exports.config = {
         browserName: 'chrome',
         'goog:chromeOptions': {
             args: ['--disable-gpu', '--start-maximized'],
-            //mobileEmulation: { deviceName: 'iPhone 6' },
+            mobileEmulation: { deviceName: 'iPhone 6' },
             // to run chrome headless the following flags are required
             // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
             // args: ['--headless', '--disable-gpu'],
@@ -217,7 +217,6 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        require: ['@babel/register'],
         timeout: 60000
     },
     //
@@ -379,10 +378,9 @@ exports.config = {
     },
 
     afterScenario: function (scenario, result, sourceLocation,uri) {
-        const cucumberJson = require('wdio-cucumberjs-json-reporter').default;
+    
         console.log(uri.status)
         if (uri.status === 'failed') {
-            cucumberJson.attach(browser.takeScreenshot(), 'image/png');
         //console.log(result)
     //     if (scenario.result.status === Status.FAILED) {
     //         console.log('Cenário Falhou')}

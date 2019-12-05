@@ -61,7 +61,7 @@ exports.config = {
 
         browserName: 'chrome',
         'goog:chromeOptions': {
-            args: ['--disable-gpu', '--start-maximized'],
+            args: ['--disable-gpu', '--start-maximized', '--headless'],
             //mobileEmulation: { deviceName: 'iPhone 6' },
             // to run chrome headless the following flags are required
             // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
